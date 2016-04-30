@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{46914c8c-fcb1-47bd-9c4e-661d1bd64c68}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>..\examples\python\basic.py</StartupFile>
+    <SearchPath>.;..\;..\bin\;..\scenarios\;..\examples\;..\examples\bin\;..\examples\python\;..\examples\config\;</SearchPath>
+    <WorkingDirectory>..\examples\python</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+    <IsWindowsApplication>False</IsWindowsApplication>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="..\bin\python\vizdoom.pyd">
+      <Name>vizdoom.pyd</Name>
+      <PythonExtension>..\bin\python\vizdoom.pyd</PythonExtension>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\examples\python\basic.py" />
+    <Compile Include="..\examples\python\cig.py" />
+    <Compile Include="..\examples\python\cig_bots.py" />
+    <Compile Include="..\examples\python\cig_host.py" />
+    <Compile Include="..\examples\python\delta_buttons.py" />
+    <Compile Include="..\examples\python\format.py" />
+    <Compile Include="..\examples\python\fps.py" />
+    <Compile Include="..\examples\python\scenarios.py" />
+    <Compile Include="..\examples\python\seed.py" />
+    <Compile Include="..\examples\python\shaping.py" />
+    <Compile Include="..\examples\python\spectator.py" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
