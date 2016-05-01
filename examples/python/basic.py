@@ -59,12 +59,25 @@ game.set_render_decals(False)
 game.set_render_particles(False)
 
 # Adds buttons that will be allowed. 
+game.add_available_button(Button.ATTACK)
+game.add_available_button(Button.TURN_LEFT)
+game.add_available_button(Button.TURN_RIGHT)
 game.add_available_button(Button.MOVE_LEFT)
 game.add_available_button(Button.MOVE_RIGHT)
-game.add_available_button(Button.ATTACK)
 
 # Adds game variables that will be included in state.
+game.add_available_game_variable(GameVariable.DEATHCOUNT)
+game.add_available_game_variable(GameVariable.HEALTH)
+game.add_available_game_variable(GameVariable.AMMO0)
+game.add_available_game_variable(GameVariable.AMMO1)
 game.add_available_game_variable(GameVariable.AMMO2)
+game.add_available_game_variable(GameVariable.AMMO3)
+game.add_available_game_variable(GameVariable.AMMO4)
+game.add_available_game_variable(GameVariable.AMMO5)
+game.add_available_game_variable(GameVariable.AMMO6)
+game.add_available_game_variable(GameVariable.AMMO7)
+game.add_available_game_variable(GameVariable.AMMO8)
+game.add_available_game_variable(GameVariable.AMMO9)
 
 # Causes episodes to finish after 200 tics (actions)
 game.set_episode_timeout(200)
@@ -88,10 +101,13 @@ game.set_mode(Mode.PLAYER)
 game.init()
 
 
-# Define some actions. Each list entry corresponds to declared buttons:
-# MOVE_LEFT, MOVE_RIGHT, ATTACK
+# Define some actions. Each list entry corresponds to declared buttons
 # 5 more combinations are naturally possible but only 3 are included for transparency when watching.	
-actions = [[True,False,False],[False,True,False],[False,False,True]]
+actions = [[True,False,False, False, False],
+           [False,True,False, False, False],
+           [False,False,True, False, False],
+           [False,False, False,True, False],
+           [False,False, False, False,True]]
 
 # Run this many episodes
 
@@ -100,10 +116,10 @@ episodes = 10
 # Sets time that will pause the engine after each action.
 # Without this everything would go too fast for you to keep track of what's happening.
 # 0.05 is quite arbitrary, nice to watch with my hardware setup. 
-sleep_time = 0.028
+sleep_time = 0.05
 
 for i in range(episodes):
-	print("Episode #" + str(i+1))
+	print("Episode #" + str(i+True))
 
 	# Starts a new episode. It is not needed right after init() but it doesn't cost much. At least the loop is nicer.
 	game.new_episode()
@@ -112,13 +128,18 @@ for i in range(episodes):
 		
 		# Gets the state
 		s = game.get_state()
+		state = s.number
+		img = s.image_buffer
+		game_variables = s.game_variables
 
 		# Makes a random action and get remember reward.
-		r = game.make_action(choice(actions))
+		action = choice(actions)
+		r = game.make_action(action)
 
 		# Prints state's game variables. Printing the image is quite pointless.
-		print("State #" + str(s.number))
-		print("Game variables:", s.game_variables[0])
+		print("State #" + str(state))
+		print("Game variables:", game_variables)
+		print("action:", action)
 		print("Reward:", r)
 		print("=====================")
 
