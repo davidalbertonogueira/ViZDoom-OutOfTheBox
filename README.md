@@ -16,3 +16,8 @@ It is primarily intended for research in machine visual learning, and deep reinf
 ViZDoom is based on [ZDoom](https://github.com/rheit/zdoom) to provide the game mechanics.
 
 ViZDoom API is **reinforcement learning** friendly (suitable also for learning from demonstration, apprenticeship learning or apprenticeship via inverse reinforcement learning, etc.).
+
+---
+##License
+
+Code original to ViZDoom is under MIT license. ZDoom uses code from several sources which varied licensing schemes, more informations [here](http://zdoom.org/wiki/license).
